@@ -28,13 +28,16 @@ function onTextareaInput(e) {
 
 function populateTextarea() {
     const savedMessage = localStorage.getItem(KEY_NAME);
-    const parsed = JSON.parse(savedMessage);
-    if (parsed.message) {
-        console.log(savedMessage);
-        refs.textarea.value = parsed.message;  
+   
+    if (savedMessage) {
+  
+      const saveMassage = JSON.parse(savedMessage);
+  
+      for (const item in saveMassage) {
+        if (saveMassage.hasOwnProperty(item)) {
+  
+          refs.form.elements[item].value = saveMassage[item];
+        }
+      }
     }
-    if (parsed.email) {
-        refs.input.value = parsed.email;
-    } 
-}
-
+  }
